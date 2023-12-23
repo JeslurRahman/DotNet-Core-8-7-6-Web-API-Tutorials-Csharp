@@ -28,8 +28,15 @@ namespace CollegeApp.Model
         [Required]
         public string Address { get; set; }
 
-        [DateCheck] //2. Validating Date and Time Using Custom attribute
+        [Required]
+        public DateTime DOB { get; set; }
+
+        #region 2. Validating Date and Time Using Custom attribute
+        /*
+        [DateCheck] 
         public DateTime AdmissionDate { get; set; }
+        */
+        #endregion
 
         /*
         [Required]

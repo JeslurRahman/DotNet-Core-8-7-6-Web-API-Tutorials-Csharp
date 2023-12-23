@@ -11,7 +11,7 @@ namespace CollegeApp.Data
         {
 
         }
-        DbSet<Student> Students { get; set; }
+        public DbSet<Student> Students { get; set; }
                 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

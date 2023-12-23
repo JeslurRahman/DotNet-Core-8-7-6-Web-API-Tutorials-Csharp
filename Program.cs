@@ -52,6 +52,7 @@ builder.Services.AddDbContext<CollegeDBContext>(options =>
 */
 
 //Connection string has added in appsettings.json Configuration file
+//For Dependancy Injection We need to registe in Program.cs
 builder.Services.AddDbContext<CollegeDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CollegeAppDBConnection")));
 
