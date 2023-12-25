@@ -1,3 +1,4 @@
+using CollegeApp.Configurations;
 using CollegeApp.Data;
 using CollegeApp.MyLogging;
 using Microsoft.EntityFrameworkCore;
@@ -43,8 +44,8 @@ builder.Logging.AddSerilog();
 */
 #endregion
 
-
 //SQL Server Services
+#region SQL Server Services
 //Hard coding the DB connection string is the not best practice
 /*
 builder.Services.AddDbContext<CollegeDBContext>(options =>
@@ -53,6 +54,7 @@ builder.Services.AddDbContext<CollegeDBContext>(options =>
 
 //Connection string has added in appsettings.json Configuration file
 //For Dependancy Injection We need to registe in Program.cs
+#endregion
 builder.Services.AddDbContext<CollegeDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CollegeAppDBConnection")));
 
@@ -63,17 +65,22 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//2. Loosely Coupled Technique
+#region 2. Loosely Coupled Technique
 /*Here we need to give Interface name  and Instance name which we need to create.
  * Here we are saying whenever this interface is used inside the constructor parameter
  then what is the type of instance we need to pass(eg: LogToDB, LogToFile, and LogToServerMemory
  
- *There are 3 methods for DI
+ *There are 3 methods for Dependancy Injection
   1.AddScoped       2.AddSingleton      3.AddTransient
  */
+#endregion
 builder.Services.AddScoped<IMyLogger, LogToDB >();
 //builder.Services.AddSingleton<IMyLogger, LogToDB>();
 //builder.Services.AddTransient<IMyLogger, LogToDB>();
+
+
+//AutoMapper services
+builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
 
 var app = builder.Build();
 
