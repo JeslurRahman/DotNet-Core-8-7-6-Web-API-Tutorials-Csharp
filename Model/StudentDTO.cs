@@ -20,7 +20,11 @@ namespace CollegeApp.Model
 
         [Required (ErrorMessage ="Student Name is required")]
         [StringLength (30)] // validating length of string
-        public string StudentName { get; set; }
+
+        //Auto mapper with different property names, ignore, transform
+        // Changed the property name from "StudentName" to "Name".
+        // Check the StudentDTO.cs and Student.cs there is the different with property name 
+        public string Name { get; set; }  
 
         [EmailAddress(ErrorMessage = "Invalid E-mail address")]
         public string Email { get; set; }
