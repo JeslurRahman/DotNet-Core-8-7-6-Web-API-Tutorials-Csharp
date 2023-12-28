@@ -14,8 +14,6 @@
 
         Task<int> UpdateAsync(Student student);
 
-        //int UpdateParcialAsync(Student student);
-
         Task<bool> DeleteAsync(Student student);
     }
 }

@@ -75,16 +75,20 @@ builder.Services.AddSwaggerGen();
   1.AddScoped       2.AddSingleton      3.AddTransient
  */
 #endregion
-//builder.Services.AddScoped<IMyLogger, LogToDB >();
+builder.Services.AddScoped<IMyLogger, LogToDB >();
 //builder.Services.AddSingleton<IMyLogger, LogToDB>();
-builder.Services.AddTransient<IMyLogger, LogToDB>();
+//builder.Services.AddTransient<IMyLogger, LogToDB>();
 
 
 //AutoMapper services
 builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
 
 //StudentRepository registration
-builder.Services.AddTransient<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+
+//Common Repository registration
+//We have to use "typeof" becouse it is Generic type
+builder.Services.AddScoped(typeof(ICollegeRepository<>), typeof(CollegeRepository<>));
 
 var app = builder.Build();
 
